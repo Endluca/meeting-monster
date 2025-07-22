@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>AI效率中心 - 会议猛兽项目展示</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- ECharts CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; min-height: 1024px; }
+    .hero-title { position: relative; display: inline-block; text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); opacity: 0; animation: titleFadeIn 1s ease forwards; }
+    @keyframes titleFadeIn { 0% { opacity: 0; transform: translateY(20px);} 100% { opacity: 1; transform: translateY(0);} }
+    .animate-fadeIn { animation: fadeIn 1s ease forwards; }
+    @keyframes fadeIn { 0% { opacity: 0;} 100% { opacity: 1;} }
+    .animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
+    @keyframes fadeInUp { 0% { opacity: 0; transform: translateY(30px);} 100% { opacity: 1; transform: translateY(0);} }
+    .glass-card { background: rgba(13, 41, 89, 0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);}
+    .transform-card { transition: transform 0.3s ease, box-shadow 0.3s ease;}
+    .transform-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);}
+    .step-card { transition: transform 0.3s ease, box-shadow 0.3s ease;}
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);}
+    .step-icon-container { position: relative;}
+    .step-icon-container::after { content: ''; position: absolute; top: 50%; left: 100%; width: 100%; height: 2px; background: linear-gradient(90deg, #4dabf7, transparent); display: none;}
+    @media (min-width: 768px) { .step-card:not(:last-child) .step-icon-container::after { display: block; } }
+    .bg-tech-grid { background-image: linear-gradient(rgba(13, 41, 89, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(13, 41, 89, 0.5) 1px, transparent 1px); background-size: 20px 20px;}
+    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0;}
+    input[type=number] { -moz-appearance: textfield;}
+    .workflow-container { position: relative;}
+    .workflow-image-wrapper { position: relative; overflow: hidden; transition: transform 0.5s ease;}
+    .workflow-image-wrapper:hover { transform: scale(1.02);}
+    .workflow-image-wrapper::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%); transform: skewX(-25deg); animation: shine 3s infinite;}
+    @keyframes shine { 0% { left: -100%;} 20%, 100% { left: 100%;} }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-blue-900 to-purple-900 text-white">
+  <div>
+    <!-- 顶部导航 -->
+    <header class="py-6 px-8 flex justify-between items-center">
+      <div class="text-xl font-bold tracking-wider">AI效率中心</div>
+      <nav>
+        <ul class="flex space-x-8">
+          <li class="cursor-pointer hover:text-blue-300 transition-colors duration-300 whitespace-nowrap">首页</li>
+          <li class="cursor-pointer hover:text-blue-300 transition-colors duration-300 whitespace-nowrap">项目</li>
+          <li class="cursor-pointer hover:text-blue-300 transition-colors duration-300 whitespace-nowrap">团队</li>
+          <li class="cursor-pointer hover:text-blue-300 transition-colors duration-300 whitespace-nowrap">联系我们</li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Hero 区域 -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://readdy.ai/api/search-image?query=futuristic%20technological%20background%20with%20blue%20and%20purple%20gradient%2C%20digital%20network%20connections%2C%20abstract%20data%20visualization%2C%20corporate%20meeting%20room%20in%20background%2C%20high%20tech%20professional%20environment%2C%208k%20render&width=1440&height=600&seq=hero1&orientation=landscape"
+          alt="Hero Background"
+          class="w-full h-full object-cover object-top opacity-40"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-transparent"></div>
+      </div>
+      <div class="container mx-auto px-8 py-20 relative z-10">
+        <h1 class="text-5xl font-bold mb-6 hero-title">
+          项目展示：<span class="text-blue-400">会议猛兽</span>
+          <span class="text-yellow-400">(CEO Meeting Beast)</span>
+        </h1>
+        <p class="text-xl max-w-3xl leading-relaxed mb-8 opacity-0 animate-fadeIn" style="animation-delay: 0.5s">
+          它就像一位永不疲倦的战略顾问，能从每一次会议中捕捉关键洞察，为企业决策提供精准支持。
+        </p>
+        <div class="flex space-x-6 opacity-0 animate-fadeIn" style="animation-delay: 1s">
+          <button class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-lg transition-all duration-300 flex items-center shadow-lg hover:shadow-blue-500/50 !rounded-button whitespace-nowrap cursor-pointer">
+            <i class="fas fa-play-circle mr-2"></i> 观看演示
+          </button>
+          <button class="bg-transparent border border-white hover:border-blue-400 hover:text-blue-400 px-8 py-3 rounded-lg transition-all duration-300 !rounded-button whitespace-nowrap cursor-pointer">
+            了解更多
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- 项目简介 -->
+    <section class="container mx-auto px-8 py-20">
+      <div class="glass-card p-10 rounded-2xl mb-16">
+        <h2 class="text-3xl font-bold mb-8 text-center">会议猛兽：<span class="text-blue-400">化对话为战略资产</span></h2>
+        <div class="max-w-4xl mx-auto">
+          <p class="text-lg mb-6 leading-relaxed">
+            在今天，我们每周都会投入大量时间进行高层会议。但会议结束后，那些宝贵的洞察、关键决策、以及未言明的风险，往往会随着时间流逝而被遗忘在冗长的纪要或笔记中。
+          </p>
+          <p class="text-2xl font-semibold text-center my-8 text-yellow-400">"会议猛兽"将彻底改变这一现状。</p>
+          <p class="text-lg mb-6 leading-relaxed">
+            通过搭载精密的工作流，并配置CEO的专属知识库与战略框架，这个工具如同
+            CEO的"第二大脑"。它不仅仅是记录，更是深度分析、提炼并升华原始会议内容，将其转化为可行动的商业情报。它能自动识别核心结论、标记潜在风险、模拟质询问题，并以CEO视角生成一份高度浓缩的战略摘要 ——而这一切，都源于最原始的会议内容。
+          </p>
+          <p class="text-lg font-bold text-center mt-8">
+            这个项目，正是我司<span class="text-blue-400">**"从'靠人'到'靠系统'"**</span>核心经营理念的一次微观实践与成功验证。
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- 效果对比 -->
+    <section class="container mx-auto px-8 py-16">
+      <h2 class="text-3xl font-bold mb-12 text-center">效果对比：<span class="text-blue-400">从原始纪要到战略情报</span></h2>
+      <div class="text-center mb-8">
+        <p class="text-xl py-3 px-6 rounded-xl bg-blue-900/60 inline-block shadow-md"><span class="text-blue-400 font-bold">"会议猛兽"</span><span class="text-white font-semibold">：一键提炼核心决策、模拟高管思维、识别战略机遇</span></p>
+      </div>
+      <div class="flex flex-col space-y-12">
+        <!-- 处理前 -->
+        <div class="transform-card bg-gray-900/60 p-8 rounded-2xl hover:shadow-xl transition-all duration-500 cursor-pointer">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-red-500 flex items-center justify-center mr-4">
+              <i class="fas fa-file-alt text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold">处理前：一份原始的会议文字记录</h3>
+          </div>
+          <p class="text-gray-300 mb-6">一份典型的两小时会议记录，包含上万字内容。信息丰富，但人工分析相当低效，难以快速获取核心。</p>
+          <div class="bg-gray-800/80 p-6 rounded-xl font-mono text-sm overflow-auto max-h-96">
+            <p class="mb-4"><span class="text-blue-400">会议标题:</span> AIEC 周会 - 中国团队</p>
+            <p class="mb-4"><span class="text-blue-400">会议时长:</span> 2小时1分47秒</p>
+            <p class="mb-4"><span class="text-blue-400">内容节选:</span></p>
+            <p class="text-gray-400 leading-relaxed">
+              王东 10:12: "...我们团队尽量去避免这样的事情，因为我们团队未来一个人都是小众，很强的，个人生产力很高，所以把时间花在更多的开会上啊。进入初期没办法，初期可能我们要进行沟通，大家的训练进入正轨以后就浪费时间，真浪费时间... 未来我们给大家介绍一个一个一个一个一个哲学，一个原则...就是书写才是真正的思考，就是如果你不是在写，你就不是在思考..."
+            </p>
+            <p class="text-gray-500 mt-4 italic">(这只是海量文字中的一小部分，实际输入的是完整的会议文档。)</p>
+          </div>
+        </div>
+        
+        <!-- 处理后 -->
+        <div class="transform-card bg-blue-900/60 p-8 rounded-2xl hover:shadow-xl transition-all duration-500 cursor-pointer">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center mr-4">
+              <i class="fas fa-chart-pie text-xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold">处理后："会议猛兽"一键生成的战略洞察</h3>
+          </div>
+          <p class="text-gray-300 mb-8">仅需数分钟，工作流即可处理完整会议纪要，并交付一份多维度的战略分析报告。</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 卡片1：行政摘要 -->
+            <div class="flex flex-col">
+              <div class="mb-4 text-center">
+                <p class="text-yellow-400 font-semibold py-2 px-4 rounded-lg bg-blue-900/40 inline-block shadow-sm">提炼会议核心决策，将冗长会议转化为可执行的战略行动清单</p>
+              </div>
+              <div class="bg-blue-800/80 p-6 rounded-xl overflow-auto max-h-96 relative flex-grow">
+              
+              <h4 class="text-xl font-bold mb-4 text-yellow-400">一页纸行政摘要 (Executive Summary)</h4>
+              <p class="font-semibold mb-2">核心结论(Key Conclusions):</p>
+              <ul class="list-disc pl-6 mb-4 space-y-2">
+                <li>结论一：AI赋能市场投放已实现关键突破。AI效率中心为中东市场开发的AI视频广告，在效果上已超越参考素材，证明了该技术在降低核心市场获客成本(CPA)和提升广告转化率(CTR)方面的巨大潜力。</li>
+                <li>结论二：AI效率中心的工作模式（异步书面沟通、OKR透明化）是我司向"靠系统"转型的一次成功微观实践。该模式若能产品化并推广，将极大提升全公司的协同效率和战略执行力，是构建增长飞轮的重要组织基础。</li>
+                <li>结论三：当前AI项目组合存在战略失焦风险。项目过于分散，且偏重HR等内部支持职能，未能将80%的资源聚焦于驱动用户增长和收入的核心业务（如市场、销售、续费），这与公司的经营思维相悖。</li>
+              </ul>
+              <p class="font-semibold mb-2">关键决策(Key Decisions):</p>
+              <ul class="list-disc pl-6 mb-4 space-y-2">
+                <li>决策：批准"利亚德市场投放支持"项目进入深度合作阶段（"陪跑"模式）。由王东团队主导，不仅要提供工具培训，更要深度介入，目标是将AI内容生产能力系统化，建立对竞品的代差优势。</li>
+                <li>决策：在AI效率中心全面推行基于Notion的"团队工作台"系统，用于管理周度OKR、每日动态和每周复盘，以此作为全公司推广"靠系统"工作模式的试点。</li>
+                <li>决策：确立AI效率中心的人才专业化发展方向，主要分为三大方向：通用场景智能化（负责人：杨世文）、智能CRM（负责人：孙可）、AI内容生成（负责人：鸿基、雨熹）。</li>
+              </ul>
+              <p class="font-semibold mb-2">主要分歧与待议事项(Major Disagreements & Open Issues):</p>
+              <ul class="list-disc pl-6 mb-4 space-y-2">
+                <li>分歧/风险点：关于团队的定位，存在"赋能HR的内部效率工具团队"与"直接驱动核心业务增长的战略团队"两种倾向的拉扯。当前项目组合显示出前者倾向，这与我的期望不符。</li>
+                <li>待议：如何为这个承担着探索任务的团队，建立一套既能应对技术、市场、战略三大变量，又能保持目标稳定的OKR设定机制。当前以"周"为单位的敏捷模式值得肯定，但需要明确其与公司季度及年度目标的挂钩方式。</li>
+                <li>待议：需在1周内由王东牵头，重新梳理AI项目清单，并根据其对"新用户增长"和"LTV提升"两大核心指标的影响进行优先级排序，形成一份聚焦的Q3项目路线图。</li>
+              </ul>
+              <p class="font-semibold mb-2">行动项列表(Action Items):</p>
+              <table class="w-full text-sm mb-4">
+                <thead>
+                  <tr>
+                    <th class="text-left text-yellow-400 pb-2">Owner</th>
+                    <th class="text-left text-yellow-400 pb-2">Deliverable</th>
+                    <th class="text-left text-yellow-400 pb-2">DDL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="pb-2">王东</td>
+                    <td class="pb-2">与中东市场负责人共同制定AI视频广告项目的量化目标（如CPA降低%、CTR提升%）及"陪跑"合作方案。</td>
+                    <td class="pb-2">1周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-2">王东、伊娃</td>
+                    <td class="pb-2">梳理并提交一份聚焦核心业务的Q3 AI项目路线图，明确80%资源将投入市场、销售、续费等增长领域。</td>
+                    <td class="pb-2">1周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-2">王东</td>
+                    <td class="pb-2">组织一次与产研、运营负责人的分享会，介绍团队的"工作台"模式，并探讨推广至其他部门的可能性。</td>
+                    <td class="pb-2">1个月内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-2">孙可</td>
+                    <td class="pb-2">提交"深维"（智能CRM）项目的ROI初步测算模型，明确其对销售转化率或续费率影响的预估及衡量方法。</td>
+                    <td class="pb-2">2周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-2">鸿基、雨熹</td>
+                    <td class="pb-2">将利雅德项目中验证有效的AI视频生成工具、流程、模板进行标准化，形成第一版《AI视频广告制作SOP》。</td>
+                    <td class="pb-2">2周内</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            
+            <!-- 卡片2：思辨模拟 -->
+            <div class="flex flex-col">
+              <div class="mb-4 text-center">
+                <p class="text-blue-400 font-semibold py-2 px-4 rounded-lg bg-blue-900/40 inline-block shadow-sm">模拟CEO思维方式，提出深度质询，挑战决策盲点，拓展战略视角</p>
+              </div>
+              <div class="bg-blue-800/80 p-6 rounded-xl overflow-auto max-h-96 relative flex-grow">
+              
+              <h4 class="text-xl font-bold mb-4 text-yellow-400">CEO视角的拓展思考 (CEO's Critical Thinking Simulation)</h4>
+              <p class="font-semibold mb-2">1. 澄清性问题 ("我们真的把事实搞清楚了吗？"):</p>
+              <div class="bg-blue-900/80 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
+                <p class="mb-2">关于鸿基和雨熹展示的AI视频广告：报告中提到"效果超越参考素材"，这个评价是主观体感还是有数据支撑？我们必须立即与中东市场团队一起，为这个项目设定清晰的量化KPI，比如点击率(CTR)、转化率(CVR)和单个线索成本(CPL)。成功的标准不是"更好"，而是"更便宜"或"更有效"。</p>
+                <p class="mb-2">关于孙可负责的"深维"智能CRM项目：这个项目最终要提升的是销售人效和用户续费率。我们是否已经建立了可靠的基线数据？当项目上线后，我们如何通过A/B测试或对照组分析，精确剥离出项目带来的转化率/续费率提升百分比？</p>
+                <p>关于王东推行的"团队工作台"：你强调它"不是来检查大家工作的"，这很好。但一个 систем 的价值在于信息的流动和应用。我们如何系统性地从每日动态和周报中提炼洞察、发现风险并升级问题？否则，它有沦为一个"只写不看"的数据库的风险。</p>
+              </div>
+              <p class="font-semibold mb-2">2. 挑战性/深挖性问题 ("为什么是这样？有没有更好的选择？"):</p>
+              <div class="bg-blue-900/80 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
+                <p class="mb-2">王东，你决定推动团队全面转向AI编程(Cursor)，而非优化工作流工具。这是一个显著提高团队技术门槛的决策。这背后的逻辑是什么？这是否会让我们团队变成一个技术"孤岛"，而减慢了将AI能力"产品化、系统化"赋能给全公司非技术同事的进程？我们是否需要一个双轨策略：你们团队攻坚高阶的Coding，同时为业务部门提供低门槛的Workflow工具？</p>
+                <p class="mb-2">我注意到整个团队都在表达对工作流工具的"厌弃"。我们要警惕这种情绪。根据我们的经营理念，"从'靠人'到'靠系统'"，一个稳定、可复制的工作流本身就是一个强大的系统。我们是不是过早地否定了它在实现"运营系统化"阶段的价值？在全员拥抱AI编程之前，我们是否把现有工作流工具的潜力挖掘到了极致？</p>
+                <p>我们决定"吃透"中东市场这个大客户。反过来想，如果我们只服务一个团队，会不会让我们产品的普适性变差，陷入"定制化开发"的陷阱？我们如何在"百米深"和"广开花"之间找到平衡，确保我们沉淀下来的能力是可规模化复制的？</p>
+              </div>
+              <p class="font-semibold mb-2">3. 战略关联性问题 ("这如何服务于我们的最高目标？"):</p>
+              <div class="bg-blue-900/80 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
+                <p class="mb-2">AI视频广告项目是巨大的机会，但它目前只解决了"获客"这一个点。它如何与我们的"客户亲密"战略和LTV增长飞轮结合？我们能否用同样的技术，为新付费用户生成个性化的欢迎视频，或者为不同学习进度的学员制作定制化的学习鼓励视频？这才能将一次性的市场行为，转化为提升用户生命周期价值的长期系统。</p>
+                <p class="mb-2">王东，你的团队是我司"AI First"和"靠系统"理念的样板间。这个团队最大的价值不仅是交付项目，更是输出一种新的工作文化和组织能力。你将如何把你们的"工作台"和异步协作模式打包成一个"产品"，向公司其他部门（如产品、运营、销售）推广？我要看到的，不只是一个AI团队，而是一个能改变公司DNA的变革引擎。</p>
+                <p>我看到项目清单里有会议猛兽、埃及招聘、360评估等多个HR项目。根据我们的经营理念，资源要投入在产生最大杠杆效应的地方。我要求你团队80%的资源必须直接服务于"新用户增长"和"LTV提升"这两大核心目标。请你以此为原则，重新评估和排序你的项目组合。</p>
+              </div>
+              <p class="font-semibold mb-2">4. 风险与机会评估问题 ("我们忽略了什么盲点？"):</p>
+              <div class="bg-blue-900/80 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
+                <p class="mb-2"><span class="text-red-400">风险：</span>这个AI效率中心目前高度依赖王东的个人能力和视野，这本身就是一种"靠人"的风险。王东，你的人才培养计划是什么？如何将你的战略思考和项目管理能力沉淀为团队的机制和流程，确保团队的成功是可以复制的？</p>
+                <p class="mb-2"><span class="text-green-400">机会：</span>我们为市场部开发的AI视频生成能力，能否成为我们赋能"城市合伙人"的新工具？想象一下，如果我们能让这些关键的推荐渠道伙伴，用低成本的方式生成带有他们个人特色的本地化营销素材，这是否会成为我们转介绍渠道的一个全新增长点？</p>
+                <p><span class="text-green-400">机会：</span>会议纪要中提到，工具链（如Keling, Hailuo）的API是开放的。这意味着我们可以将这些能力"内化"和"自动化"。杨世文，你能否评估一下，将这些外部API整合，打造一个51Talk内部的"一键式AI内容生成平台"的技术可行性和资源投入？让不懂AI的员工也能使用。</p>
+              </div>
+              <p class="font-semibold mb-2">5. 跨部门影响问题 ("这对其他团队意味着什么？"):</p>
+              <div class="bg-blue-900/80 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
+                <p class="mb-2">利亚德AI视频项目上线后，市场投放团队的工作流程(SOP)需要做什么调整？谁来负责撰写AI的提示词(prompt)？谁来审核AI生成内容的合规性？我们是否已经和品牌、法务团队建立了快速审批通道？</p>
+                <p>"深维"智能CRM项目将彻底改变CC(销售)和SS(学服)的工作台。我们是否已经和销售培训部门、SS管理团队同步了这些变化？新的工具如何影响他们现有的KPI考核和奖金计算方式？这些问题必须提前解决，否则再好的工具也推不下去。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+            
+            <!-- 卡片3：结构化详细记录 -->
+            <div class="flex flex-col">
+              <div class="mb-4 text-center">
+                <p class="text-green-400 font-semibold py-2 px-4 rounded-lg bg-blue-900/40 inline-block shadow-sm">结构化记录会议全貌，清晰呈现讨论过程，追踪行动项执行状态</p>
+              </div>
+              <div class="bg-blue-800/80 p-6 rounded-xl overflow-auto max-h-96 relative flex-grow">
+              
+              <h4 class="text-xl font-bold mb-4 text-yellow-400">结构化详细纪要 (Structured Detailed Notes)</h4>
+              <p class="font-semibold mb-2">会议基本信息:</p>
+              <ul class="list-none pl-0 mb-4 space-y-1">
+                <li><span class="text-blue-400">会议主题:</span> AI效率中心团队工作模式导入及周度规划会</li>
+                <li><span class="text-blue-400">日期:</span> [近期]</li>
+                <li><span class="text-blue-400">与会人员:</span> 王东 (负责人), 伊娃, 孙可, 杨世文, 鸿基, 雨熹, 文轩 (新成员)</li>
+              </ul>
+              <p class="font-semibold mb-2">详细讨论过程(按议题划分):</p>
+              <div class="mb-3">
+                <p class="text-yellow-400 font-semibold">议题一：导入新的团队工作与沟通模式——"团队工作台"</p>
+                <p class="mb-1"><span class="text-blue-400">背景与目标:</span> 王东提出，为提升团队沟通带宽、应对跨时区协作、并践行"靠系统"的理念，需建立一套新的工作模式。</p>
+                <p class="mb-1"><span class="text-blue-400">主要观点与论据:</span></p>
+                <ul class="list-disc pl-6 mb-2 space-y-1">
+                  <li>王东主张三大核心原则：1) 书写即思考，强调书面沟通以深化思考、明确逻辑；2) 异步沟通，以提高效率，减少不必要的会议锁定；3) 透明化，通过共享OKR和工作动态增进信任，减少管理开销。</li>
+                  <li>他认为，这种模式与公司"从'靠人'到'靠系统'"的经营理念，以及"AI First"的战略高度一致。</li>
+                  <li>他指出这套方法论与公司当前偏传统的会议文化存在冲突，但团队必须主动构建自己的高效工作习性。</li>
+                </ul>
+                <p><span class="text-blue-400">最终方案：</span>采用Notion搭建"团队工作台"，包含<strong>周度目标(OKR)、每日动态(Daily Log)和每周复盘(Weekly Review)</strong>三大模块。</p>
+              </div>
+              <div class="mb-3">
+                <p class="text-yellow-400 font-semibold">议题二：项目进展与个人周度目标同步</p>
+                <p class="mb-1"><span class="text-blue-400">背景与目标:</span> 团队成员分享各自本周的核心工作目标，以实践新的工作台模式。</p>
+                <p class="mb-1"><span class="text-blue-400">主要观点与论据:</span></p>
+                <ul class="list-disc pl-6 mb-2 space-y-1">
+                  <li>王东：分享了个人三大业务目标（深维智能CRM项目、AI训战营、AI项目 portfolio 梳理）、两大团队目标（辅导团队使用工作台、与全员1-on-1）和个人成长目标（学习AI编程、读书）。</li>
+                  <li>孙可：核心工作围绕"深维"项目和训战营的日常运营，并思考如何提升学员活跃度。</li>
+                  <li>鸿基&雨熹：核心工作是训战营的教学设计、AI工具榜单视频制作，以及重点项目"利亚德市场投放"的AI视频制作。</li>
+                  <li>杨世文：负责优化和发布"会议猛兽"项目、360培训项目，以及一个领导力框架项目。</li>
+                </ul>
+                <p><span class="text-blue-400">讨论焦点：</span>团队成员普遍将学习AI编程（Cursor）作为个人成长目标，并表现出对工作流工具的兴趣下降。</p>
+              </div>
+              <div class="mb-3">
+                <p class="text-yellow-400 font-semibold">议题三：重点项目复盘——利亚德市场投放AI视频</p>
+                <p class="mb-1"><span class="text-blue-400">背景与目标:</span> 鸿基和雨熹展示了为中东市场投放团队制作的AI视频广告样品，并复盘制作过程。</p>
+                <p class="mb-1"><span class="text-blue-400">主要观点与论据:</span></p>
+                <ul class="list-disc pl-6 mb-2 space-y-1">
+                  <li>成果：使用可灵、海螺、即梦等工具，成功生成了多种风格的AI数字人视频广告，在口型同步、表情丰富度等方面效果良好，获得"比客户给的参考视频要好"的初步评价。</li>
+                  <li>成本分析：单个视频制作时间约15-20分钟，主要时间成本在于前期工具选型和测试。金钱成本主要为各AI工具的订阅费。</li>
+                  <li>技术路径：探索了"文生视频"和"图生视频"两种路径，发现利用海螺等工具生成视频再用可灵对口型是有效组合。</li>
+                </ul>
+                <p class="mb-1"><span class="text-blue-400">讨论焦点与交锋:</span></p>
+                <ul class="list-disc pl-6 mb-2 space-y-1">
+                  <li>下一步策略：团队讨论是应该"培训"市场团队方法，还是"陪跑"深度合作。</li>
+                  <li>王东明确指示，此项目价值巨大，应采取<strong>"先培训，再陪跑"</strong>的策略，最终目标是把AI能力内化为系统或产品（如工作流），为客户提供"机关枪"而非"步枪"，彻底"吃透"这个大客户。</li>
+                  <li>战略延伸：王东提出此成功案例具备"百米深"（吃透中东市场）和"广开花"（复制到国内、泰国等其他市场）的潜力。</li>
+                </ul>
+              </div>
+              <p class="font-semibold mb-2">总览：所有行动项(附带背景与优先级)</p>
+              <table class="w-full text-sm">
+                <thead>
+                  <tr>
+                    <th class="text-left text-blue-400 pb-1">#</th>
+                    <th class="text-left text-blue-400 pb-1">优先级</th>
+                    <th class="text-left text-blue-400 pb-1">任务描述</th>
+                    <th class="text-left text-blue-400 pb-1">负责人</th>
+                    <th class="text-left text-blue-400 pb-1">截止日期</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="pb-1">1</td>
+                    <td class="pb-1">High</td>
+                    <td class="pb-1">完成个人版"团队工作台"第一版填写，包含本周目标和今日动态。</td>
+                    <td class="pb-1">全体成员</td>
+                    <td class="pb-1">当日下班前</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-1">2</td>
+                    <td class="pb-1">High</td>
+                    <td class="pb-1">制定"利亚德AI视频"项目的量化KPI及深度合作方案，并与中东市场团队对齐。</td>
+                    <td class="pb-1">王东, 鸿基, 雨熹</td>
+                    <td class="pb-1">1周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-1">3</td>
+                    <td class="pb-1">High</td>
+                    <td class="pb-1">重新梳理AI项目清单并按战略优先级排序，确保80%资源投入核心业务增长。</td>
+                    <td class="pb-1">王东, 伊娃</td>
+                    <td class="pb-1">1周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-1">4</td>
+                    <td class="pb-1">Medium</td>
+                    <td class="pb-1">完成"会议猛兽"通用场景智能体的优化并正式发布。</td>
+                    <td class="pb-1">杨世文</td>
+                    <td class="pb-1">1周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-1">5</td>
+                    <td class="pb-1">Medium</td>
+                    <td class="pb-1">输出"深维"智能CRM项目的初步ROI测算模型。</td>
+                    <td class="pb-1">孙可</td>
+                    <td class="pb-1">2周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-1">6</td>
+                    <td class="pb-1">Medium</td>
+                    <td class="pb-1">完成训战营7月规划，包括课表、积分升级和毕业设计方案。</td>
+                    <td class="pb-1">伊娃, 孙可</td>
+                    <td class="pb-1">1周内</td>
+                  </tr>
+                  <tr>
+                    <td class="pb-1">7</td>
+                    <td class="pb-1">Low</td>
+                    <td class="pb-1">研究团队工作台的智能化和数据联动方案，例如团队大盘视图。</td>
+                    <td class="pb-1">孙可</td>
+                    <td class="pb-1">持续</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 工作流程展示 -->
+    <section class="py-20 relative overflow-hidden">
+      <div class="absolute inset-0 bg-tech-grid opacity-20"></div>
+      <div class="container mx-auto px-8 relative z-10">
+        <h2 class="text-3xl font-bold mb-12 text-center">驱动引擎：<span class="text-blue-400">我们的工作流</span></h2>
+        <p class="text-lg text-center max-w-3xl mx-auto mb-16">
+          这一切的背后，是由我们自主设计的精密工作流驱动。每一个节点都经过精心设计，对信息进行解构、分析与重组，从而确保每一次的输出都精准、高效、并充满洞察。
+        </p>
+        <div class="workflow-container relative">
+          <div class="workflow-image-wrapper rounded-xl overflow-hidden shadow-2xl">
+            <img
+              src="https://static.readdy.ai/image/fc9f36f22733a8360d9107b8571627de/9255ca360472929d1204c89751f428bb.jfif"
+              alt="AI工作流程图"
+              class="w-full h-auto object-cover"
+            />
+          </div>
+          <div class="mt-8 workflow-image-wrapper rounded-xl overflow-hidden shadow-2xl">
+            <img
+              src="https://readdy.ai/api/search-image?query=complex%20AI%20workflow%20diagram%20with%20multiple%20connected%20nodes%2C%20enterprise%20data%20processing%20system%2C%20professional%20technical%20architecture%2C%20dark%20blue%20background%20with%20glowing%20connections%2C%20futuristic%20tech%20visualization%2C%208k%20render&width=1440&height=400&seq=workflow2&orientation=landscape"
+              alt="工作流程图"
+              class="w-full h-auto object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 使用指南 -->
+    <section class="container mx-auto px-8 py-20">
+      <h2 class="text-3xl font-bold mb-12 text-center">使用指南：<span class="text-blue-400">简单三步，轻松上手</span></h2>
+      <p class="text-lg text-center max-w-3xl mx-auto mb-16">
+        使用"会议猛兽"的流程被设计得极其简便。
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 步骤1 -->
+        <div class="step-card bg-blue-900/30 p-8 rounded-2xl hover:shadow-xl transition-all duration-500 cursor-pointer">
+          <div class="step-icon-container mb-6 mx-auto">
+            <div class="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center mx-auto">
+              <i class="fas fa-robot text-3xl"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">第1步：添加机器人</h3>
+          <p class="text-center">在飞书中搜索并添加"会议猛兽"机器人。</p>
+        </div>
+        <!-- 步骤2 -->
+        <div class="step-card bg-blue-800/30 p-8 rounded-2xl hover:shadow-xl transition-all duration-500 cursor-pointer">
+          <div class="step-icon-container mb-6 mx-auto">
+            <div class="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center mx-auto">
+              <i class="fas fa-file-upload text-3xl"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">第2步：发送会议内容</h3>
+          <p class="mb-4">您需要发送两项内容：</p>
+          <ul class="space-y-3">
+            <li><span class="text-yellow-400">(1) 会议主题：</span> 直接发送文字即可，如"Q3战略规划会"。</li>
+            <li>
+              <span class="text-yellow-400">(2) 会议内容：</span> 支持多种格式，任选其一：
+              <ul class="pl-4 mt-2 space-y-1">
+                <li>- 直接上传文件（支持.doc, .docx, .pdf, .txt格式）</li>
+                <li>- 粘贴飞书文档链接</li>
+                <li>- 粘贴在互联网上可公开访问的链接</li>
+                <li>- 直接粘贴纯文本内容</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- 步骤3 -->
+        <div class="step-card bg-blue-900/30 p-8 rounded-2xl hover:shadow-xl transition-all duration-500 cursor-pointer">
+          <div class="step-icon-container mb-6 mx-auto">
+            <div class="w-20 h-20 rounded-full bg-blue-600 flex items-center justify-center mx-auto">
+              <i class="fas fa-chart-line text-3xl"></i>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">第3步：等待处理与接收</h3>
+          <p class="text-center">机器人会提示发送成功。处理完成后，您将收到一条提示消息，点击链接即可查看完整的高价值分析报告。</p>
+        </div>
+      </div>
+    </section>
+    <!-- 演示效果 -->
+    <section class="container mx-auto px-8 py-20">
+      <h2 class="text-3xl font-bold mb-12 text-center">实际效果：<span class="text-blue-400">从会议到战略</span></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="glass-card p-8 rounded-2xl">
+          <h3 class="text-2xl font-bold mb-6 flex items-center">
+            <i class="fas fa-chart-bar text-blue-400 mr-3"></i>
+            效率提升
+          </h3>
+          <div id="efficiencyChart" class="w-full h-80"></div>
+        </div>
+        <div class="glass-card p-8 rounded-2xl">
+          <h3 class="text-2xl font-bold mb-6 flex items-center">
+            <i class="fas fa-brain text-blue-400 mr-3"></i>
+            洞察深度
+          </h3>
+          <div id="insightChart" class="w-full h-80"></div>
+        </div>
+      </div>
+    </section>
+    <!-- 底部CTA -->
+    <section class="py-20 relative overflow-hidden">
+      <div class="absolute inset-0">
+        <img
+          src="https://readdy.ai/api/search-image?query=futuristic%20corporate%20boardroom%20with%20holographic%20displays%2C%20executive%20meeting%20environment%2C%20high%20tech%20business%20setting%2C%20blue%20and%20purple%20lighting%2C%20professional%20atmosphere%2C%208k%20render&width=1440&height=500&seq=cta1&orientation=landscape"
+          alt="CTA Background"
+          class="w-full h-full object-cover object-top opacity-30"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-900/90 to-transparent"></div>
+      </div>
+      <div class="container mx-auto px-8 relative z-10 text-center">
+        <h2 class="text-4xl font-bold mb-6">准备好释放会议中的<span class="text-blue-400">战略价值</span>了吗？</h2>
+        <p class="text-xl max-w-3xl mx-auto mb-10">
+          加入我们的早期用户计划，率先体验"会议猛兽"带来的效率革命。
+        </p>
+        <button class="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-lg text-xl transition-all duration-300 shadow-lg hover:shadow-blue-500/50 !rounded-button whitespace-nowrap cursor-pointer">
+          立即申请试用
+        </button>
+      </div>
+    </section>
+    <!-- 页脚 -->
+    <footer class="bg-blue-950 py-12">
+      <div class="container mx-auto px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">AI效率中心</h3>
+            <p class="text-gray-400">
+              专注于用AI技术提升企业核心效率，从"靠人"到"靠系统"。
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">产品</h3>
+            <ul class="space-y-2">
+              <li class="cursor-pointer hover:text-blue-400 transition-colors">会议猛兽</li>
+              <li class="cursor-pointer hover:text-blue-400 transition-colors">AI效率助手</li>
+              <li class="cursor-pointer hover:text-blue-400 transition-colors">战略分析引擎</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">资源</h3>
+            <ul class="space-y-2">
+              <li class="cursor-pointer hover:text-blue-400 transition-colors">文档</li>
+              <li class="cursor-pointer hover:text-blue-400 transition-colors">博客</li>
+              <li class="cursor-pointer hover:text-blue-400 transition-colors">案例研究</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold mb-4">联系我们</h3>
+            <ul class="space-y-2">
+              <li class="flex items-center"><i class="fas fa-envelope mr-2 text-blue-400"></i> contact@aiefficiency.com</li>
+              <li class="flex items-center"><i class="fas fa-phone mr-2 text-blue-400"></i> +86 123 4567 8910</li>
+              <li class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i> 北京市海淀区中关村</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-blue-800 mt-8 pt-8 flex justify-between items-center">
+          <p class="text-gray-500">© 2025 AI效率中心. 保留所有权利。</p>
+          <div class="flex space-x-4">
+            <i class="fab fa-weixin text-xl cursor-pointer hover:text-blue-400 transition-colors"></i>
+            <i class="fab fa-weibo text-xl cursor-pointer hover:text-blue-400 transition-colors"></i>
+            <i class="fab fa-github text-xl cursor-pointer hover:text-blue-400 transition-colors"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- 图表和动画初始化 -->
+  <script>
+    // 效率提升柱状图
+    var efficiencyChart = echarts.init(document.getElementById('efficiencyChart'));
+    efficiencyChart.setOption({
+      animation: false,
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      legend: { data: ['传统方式', '会议猛兽'], textStyle: { color: '#fff' } },
+      grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+      xAxis: { type: 'value', axisLabel: { color: '#fff' }, axisLine: { lineStyle: { color: '#8e9aaf' } }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }, max: 100 },
+      yAxis: { type: 'category', data: ['会议内容提取', '关键决策识别', '风险评估', '战略分析', '总耗时'], axisLabel: { color: '#fff' }, axisLine: { lineStyle: { color: '#8e9aaf' } } },
+      series: [
+        { name: '传统方式', type: 'bar', data: [85, 90, 95, 95, 90], itemStyle: { color: '#ff6b6b' } },
+        { name: '会议猛兽', type: 'bar', data: [15, 20, 25, 30, 20], itemStyle: { color: '#4dabf7' } }
+      ]
+    });
+    // 洞察深度饼图
+    var insightChart = echarts.init(document.getElementById('insightChart'));
+    insightChart.setOption({
+      animation: false,
+      tooltip: { trigger: 'item' },
+      legend: { top: '5%', left: 'center', textStyle: { color: '#fff' } },
+      series: [{
+        name: '洞察类型',
+        type: 'pie',
+        radius: ['40%', '70%'],
+        avoidLabelOverlap: false,
+        itemStyle: { borderRadius: 10, borderColor: '#0d1b2a', borderWidth: 2 },
+        label: { show: false, position: 'center' },
+        emphasis: { label: { show: true, fontSize: '18', fontWeight: 'bold', color: '#fff' } },
+        labelLine: { show: false },
+        data: [
+          { value: 35, name: '战略决策', itemStyle: { color: '#4dabf7' } },
+          { value: 25, name: '风险预警', itemStyle: { color: '#ff6b6b' } },
+          { value: 20, name: '市场洞察', itemStyle: { color: '#51cf66' } },
+          { value: 15, name: '执行建议', itemStyle: { color: '#fcc419' } },
+          { value: 5, name: '其他', itemStyle: { color: '#9775fa' } }
+        ]
+      }]
+    });
+    // 动画效果
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fadeInUp');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.glass-card, .step-card, .transform-card, .workflow-image-wrapper').forEach(el => {
+      el.classList.add('opacity-0');
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
